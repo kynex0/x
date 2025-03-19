@@ -28,6 +28,9 @@ pids
 screenshots/
 data/
 
+# Spec story data
+.specstory/
+
 # Production build
 dist/
 build/

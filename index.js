@@ -1226,7 +1226,7 @@ const runBot = async (targetAccounts) => {
     logger.info(`Önceden takip edilen kullanıcı sayısı: ${followedUsers.length}`);
     
     // Maksimum takip sayısı
-    const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10);
+    const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 500, 10);
     let followCount = 0;
     
     // Hedef hesaplar için takipçileri topla ve takip et
@@ -1317,7 +1317,7 @@ const getBotStatus = () => {
     tarayiciAcik: global.browser ? true : false,
     config: {
       username: process.env.X_USERNAME,
-      maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10),
+      maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 500, 10),
       followDelayMin: parseInt(process.env.FOLLOW_DELAY_MIN || 15, 10),
       followDelayMax: parseInt(process.env.FOLLOW_DELAY_MAX || 30, 10),
       useProxy: process.env.USE_PROXY === 'true',

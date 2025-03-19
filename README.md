@@ -40,7 +40,7 @@ NAVIGATION_TIMEOUT=180000
 RETRY_ATTEMPTS=3
 FOLLOW_DELAY_MIN=30
 FOLLOW_DELAY_MAX=60
-MAX_FOLLOWS_PER_DAY=15
+MAX_FOLLOWS_PER_DAY=500
 HUMAN_LIKE_TYPING=true
 
 # Optional proxy settings
@@ -89,7 +89,7 @@ You can customize the bot's behavior by modifying the environment variables in t
 - `RETRY_ATTEMPTS`: Number of login retry attempts (default: 3)
 - `FOLLOW_DELAY_MIN`: Minimum delay (in seconds) between follow actions (default: 30)
 - `FOLLOW_DELAY_MAX`: Maximum delay (in seconds) between follow actions (default: 60)
-- `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 15)
+- `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 500)
 - `HUMAN_LIKE_TYPING`: Enable human-like typing behavior (default: true)
 
 ## Caution and Disclaimer

@@ -7590,9 +7590,443 @@ README.md ve CONTRIBUTING.md dosyalarınızı GitHub kullanıcınıza göre gün
 
 ---
 
-Cancelled
+```diff
+  1. Clone this repository:
+  ```bash
+- git clone https://github.com/yourusername/twitter-follower-bot.git
++ git clone https://github.com/kynex0/twitter-follower-bot.git
+  cd twitter-follower-bot
+  ```
+```
 
 ---
+
+```diff
+  ### Reporting Bugs
+  
+- - **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/yourusername/twitter-follower-bot/issues).
+- - If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/yourusername/twitter-follower-bot/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and steps to reproduce the issue.
++ - **Ensure the bug was not already reported** by searching on GitHub under [Issues](https://github.com/kynex0/twitter-follower-bot/issues).
++ - If you're unable to find an open issue addressing the problem, [open a new one](https://github.com/kynex0/twitter-follower-bot/issues/new). Be sure to include a **title and clear description**, as much relevant information as possible, and steps to reproduce the issue.
+  
+  ### Suggesting Enhancements
+```
+
+---
+
+```diff
+  MIT License
+  
+- Copyright (c) 2025 
++ Copyright (c) 2025 Kynex0
+  
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+```
+
+---
+
+GitHub için gerekli düzenlemeleri tamamladım. GitHub kullanıcı adınız (kynex0) ile ilgili tüm referansları şu şekilde güncelledim:
+
+1. **README.md**: 
+   - Repository klonlama URL'sini `https://github.com/kynex0/twitter-follower-bot.git` olarak güncelledim
+
+2. **CONTRIBUTING.md**: 
+   - Issue ve Pull Request linklerini `https://github.com/kynex0/twitter-follower-bot/issues` olarak güncelledim
+   - Yeni issue açma linkini `https://github.com/kynex0/twitter-follower-bot/issues/new` olarak güncelledim
+
+3. **LICENSE**: 
+   - Telif hakkı bilgisini `Copyright (c) 2025 Kynex0` olarak güncelledim
+
+Artık projenizi GitHub'a yüklemek için hazırsınız. Şu adımları izleyerek yükleyebilirsiniz:
+
+```bash
+# Git repo'su oluşturun
+git init
+
+# Dosyalarınızı staging'e ekleyin
+git add .
+
+# İlk commit'i oluşturun
+git commit -m "Initial commit"
+
+# GitHub repo'nuzu bağlayın
+git remote add origin https://github.com/kynex0/twitter-follower-bot.git
+
+# Reponuza push edin
+git push -u origin main
+```
+
+GitHub hesabınızda önce repository oluşturmayı unutmayın.
+
+---
+
+_**User**_
+
+şimdi bunu x de paylaşıcam yani twitter da bana güzel bir açıklama yazar mısın 
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+📣 Yeni Açık Kaynak Projemle Tanışın: Twitter Follower Bot!
+
+Puppeteer kullanarak geliştirdiğim bu bot, belirlediğiniz hesapların takipçilerini otomatik olarak takip ediyor. İnsan davranışını simüle eden algoritması sayesinde tespit edilme riski düşük.
+
+✅ Otomatik giriş
+✅ İnsan benzeri hareketler
+✅ Akıllı yeniden deneme mekanizması
+✅ Proxy desteği
+✅ Detaylı loglama
+
+GitHub: https://github.com/kynex0/twitter-follower-bot
+
+#OpenSource #TwitterBot #NodeJS #Puppeteer
+
+---
+
+_**User**_
+
+ingilizceye çevir
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+📣 Meet My New Open Source Project: Twitter Follower Bot!
+
+This bot, developed using Puppeteer, automatically follows the followers of accounts you specify. Thanks to its algorithm that simulates human behavior, the risk of detection is low.
+
+✅ Automated login
+✅ Human-like interactions
+✅ Smart retry mechanism
+✅ Proxy support
+✅ Detailed logging
+
+GitHub: https://github.com/kynex0/twitter-follower-bot
+
+#OpenSource #TwitterBot #NodeJS #Puppeteer
+
+---
+
+_**User**_
+
+günlük limiti 500 yapalım 
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+```diff
+  FOLLOW_DELAY_MIN=30
+  FOLLOW_DELAY_MAX=60
+- MAX_FOLLOWS_PER_DAY=15
++ MAX_FOLLOWS_PER_DAY=500
+  HUMAN_LIKE_TYPING=true
+  
+```
+
+---
+
+```diff
+  FOLLOW_DELAY_MIN=30
+  FOLLOW_DELAY_MAX=60
+- MAX_FOLLOWS_PER_DAY=15
++ MAX_FOLLOWS_PER_DAY=500
+  HUMAN_LIKE_TYPING=true
+  
+  - `FOLLOW_DELAY_MIN`: Minimum delay (in seconds) between follow actions (default: 30)
+  - `FOLLOW_DELAY_MAX`: Maximum delay (in seconds) between follow actions (default: 60)
+- - `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 15)
++ - `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 500)
+  - `HUMAN_LIKE_TYPING`: Enable human-like typing behavior (default: true)
+  
+```
+
+---
+
+Günlük limit değişikliğini yaptım! Twitter için mesajınızı güncellenmiş limite göre hazırladım:
+
+📣 Meet My New Open Source Project: Twitter Follower Bot!
+
+This bot, developed using Puppeteer, automatically follows the followers of accounts you specify. Thanks to its algorithm that simulates human behavior, the risk of detection is low.
+
+✅ Automated login
+✅ Human-like interactions
+✅ Smart retry mechanism
+✅ Proxy support
+✅ Up to 500 follows per day
+✅ Detailed logging
+
+GitHub: https://github.com/kynex0/twitter-follower-bot
+
+#OpenSource #TwitterBot #NodeJS #Puppeteer #GrowYourAccount
+
+---
+
+_**User**_
+
+ değişilik limitini proje ana dosyalarında yapalım 
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+Evet, günlük takip limitini başarıyla 500 olarak güncelledim:
+
+1. `.env.example` dosyasında `MAX_FOLLOWS_PER_DAY=500` olarak değiştirildi
+2. `README.md` dosyasında hem örnek `.env` içeriğinde hem de "Advanced Configuration" bölümünde varsayılan değer 500 olarak güncellendi
+3. Twitter paylaşım mesajınıza da "Up to 500 follows per day" olarak ekledim
+
+Bu yüksek limit size daha hızlı büyüme sağlayacaktır, ancak Twitter'ın kendi güvenlik sistemleri tarafından hesabınızın kısıtlanma riski artabilir. Proxy kullanımı ve insan davranışı simülasyonu bu riski azaltmaya yardımcı olacaktır.
+
+---
+
+Read file: index.js
+
+---
+
+<details>
+            <summary>Grep search for "MAX_FOLLOWS_PER_DAY" • **10** files</summary>
+        
+| File | Line | Match |
+|------|------|-------|
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/server.js` | L65 | `if (maxFollowsPerDay) envContent = envContent.replace(/MAX_FOLLOWS_PER_DAY=.*/g, `MAX_FOLLOWS_PER_DAY=${maxFollowsPerDay}`);` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/README.md` | L42 | `MAX_FOLLOWS_PER_DAY=500` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/README.md` | L91 | `- `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 500)` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/index.js` | L1228 | `const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10);` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/index.js` | L1319 | `maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10),` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L226 | `+ MAX_FOLLOWS_PER_DAY=50` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L443 | `+     const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10);` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L552 | `+    - `MAX_FOLLOWS_PER_DAY`: Günlük maksimum takip sayısı` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L646 | `- `MAX_FOLLOWS_PER_DAY` değerini güvenli bir seviyede tutun (önerilen: 30-50)` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L696 | `MAX_FOLLOWS_PER_DAY=50` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L799 | `+       maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10),` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L914 | `+     if (maxFollowsPerDay) envContent = envContent.replace(/MAX_FOLLOWS_PER_DAY=.*/g, `MAX_FOLLOWS_PER_DAY=${maxFollowsPerDay}`);` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L2557 | `MAX_FOLLOWS_PER_DAY=50` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L3512 | `MAX_FOLLOWS_PER_DAY=50` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L5871 | `-       maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10),` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L5988 | `+       maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10),` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7203 | `-    - `MAX_FOLLOWS_PER_DAY`: Günlük maksimum takip sayısı` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7285 | `+ MAX_FOLLOWS_PER_DAY=15` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7334 | `+ - `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 15)` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7453 | `+ MAX_FOLLOWS_PER_DAY=15` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7733 | `- MAX_FOLLOWS_PER_DAY=15` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7734 | `+ MAX_FOLLOWS_PER_DAY=500` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7744 | `- MAX_FOLLOWS_PER_DAY=15` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7745 | `+ MAX_FOLLOWS_PER_DAY=500` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7750 | `- - `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 15)` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.specstory/history/2025-03-19_20-37-otomatik-twitter-bot-geli%C5%9Ftirme.md` | L7751 | `+ - `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 500)` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.env.example` | L9 | `MAX_FOLLOWS_PER_DAY=500` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.env` | L3 | `MAX_FOLLOWS_PER_DAY=50` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/index.js` | L1228 | `const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10);` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/index.js` | L1319 | `maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10),` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/server.js` | L65 | `if (maxFollowsPerDay) envContent = envContent.replace(/MAX_FOLLOWS_PER_DAY=.*/g, `MAX_FOLLOWS_PER_DAY=${maxFollowsPerDay}`);` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/README.md` | L42 | `MAX_FOLLOWS_PER_DAY=500` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/README.md` | L91 | `- `MAX_FOLLOWS_PER_DAY`: Maximum number of users to follow per day (default: 500)` |
+| `file:///c%3A/Users/Mehmet/OneDrive/Masa%C3%BCst%C3%BC/x/.env.example` | L9 | `MAX_FOLLOWS_PER_DAY=500` |
+
+</details>
+
+---
+
+```diff
+      
+      // Maksimum takip sayısı
+-     const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10);
++     const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 500, 10);
+      let followCount = 0;
+      
+      config: {
+        username: process.env.X_USERNAME,
+-       maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10),
++       maxFollowsPerDay: parseInt(process.env.MAX_FOLLOWS_PER_DAY || 500, 10),
+        followDelayMin: parseInt(process.env.FOLLOW_DELAY_MIN || 15, 10),
+        followDelayMax: parseInt(process.env.FOLLOW_DELAY_MAX || 30, 10),
+```
+
+---
+
+
+
+---
+
+```diff
+  X_PASSWORD=Acmmehmet3636
+  HEADLESS=false
+- MAX_FOLLOWS_PER_DAY=50
++ MAX_FOLLOWS_PER_DAY=500
+  FOLLOW_DELAY_MIN=15
+  FOLLOW_DELAY_MAX=30
+```
+
+---
+
+
+
+---
+
+_**User**_
+
+web dashboardında da değiştirleim 
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+Read file: server.js
+
+---
+
+Read file: public/script.js
+
+---
+
+Read file: public/index.html
+
+---
+
+```diff
+          // Form değerlerini doldur
+          document.getElementById('username').value = data.config.username;
+-         document.getElementById('maxFollowsPerDay').value = data.config.maxFollowsPerDay;
++         document.getElementById('maxFollowsPerDay').value = data.config.maxFollowsPerDay || 500;
+          document.getElementById('followDelayMin').value = data.config.followDelayMin;
+          document.getElementById('followDelayMax').value = data.config.followDelayMax;
+```
+
+---
+
+```diff
+                      <div class="col-md-4">
+                        <label for="maxFollowsPerDay" class="form-label">Günlük Takip Limiti</label>
+-                       <input type="number" class="form-control" id="maxFollowsPerDay" name="maxFollowsPerDay" min="1" max="200">
++                       <input type="number" class="form-control" id="maxFollowsPerDay" name="maxFollowsPerDay" min="1" max="500">
+                      </div>
+                      <div class="col-md-4">
+```
+
+---
+
+Web dashboard için de günlük limit değerleri başarıyla güncellendi:
+
+1. `index.js` dosyasında varsayılan limit 50'den 500'e yükseltildi:
+   ```javascript
+   const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 500, 10);
+   ```
+
+2. `.env` dosyasında limit 50'den 500'e yükseltildi:
+   ```
+   MAX_FOLLOWS_PER_DAY=500
+   ```
+
+3. Web arayüzündeki `public/script.js` dosyasında da varsayılan değer 500 olarak belirlendi:
+   ```javascript
+   document.getElementById('maxFollowsPerDay').value = data.config.maxFollowsPerDay || 500;
+   ```
+
+4. `public/index.html` dosyasında günlük takip limiti için maksimum değer 200'den 500'e yükseltildi:
+   ```html
+   <input type="number" class="form-control" id="maxFollowsPerDay" name="maxFollowsPerDay" min="1" max="500">
+   ```
+
+Bu değişikliklerle birlikte hem bot altyapısında hem de web arayüzünde günlük takip limiti 500 olarak güncellenmiş oldu. Bu, botun daha fazla hesap takip etmesine olanak sağlayacak.
+
+---
+
+_**User**_
+
+@https://github.com/kynex0/x githubda ki dosyaları güncellemem lazım 
+
+---
+
+_**Assistant**_
+
+
+
+---
+
+GitHub'daki x repository'nizde güncellenmesi gereken dosyaları belirledim. Yaptığımız değişikliklerin GitHub'a yansıması için şu adımları izlemeniz gerekiyor:
+
+## 1. Güncellenecek Dosyalar
+
+GitHub'daki [https://github.com/kynex0/x](https://github.com/kynex0/x) repoda aşağıdaki dosyaları güncellemeniz gerekiyor:
+
+- `README.md`: MAX_FOLLOWS_PER_DAY değerini 15'ten 500'e değiştirin
+- `.env.example`: MAX_FOLLOWS_PER_DAY=500 olarak güncelleyin
+- `index.js`: maxFollowsPerDay değişkeninin varsayılan değerini 50'den 500'e değiştirin
+- `public/index.html`: maxFollowsPerDay input'unun max değerini 500 olarak güncelleyin
+- `public/script.js`: getBotStatus fonksiyonunda varsayılan değeri 500 olarak belirleyin
+
+## 2. Güncelleme İşlemleri
+
+### Lokal olarak güncelleme yaparsanız:
+
+1. Önce repoyu klonlayın:
+```bash
+git clone https://github.com/kynex0/x.git
+cd x
+```
+
+2. Dosyaları güncelleyin:
+   - README.md'de MAX_FOLLOWS_PER_DAY değerini 15'ten 500'e değiştirin
+   - .env.example'da MAX_FOLLOWS_PER_DAY=500 olarak güncelleyin
+   - index.js'de `const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 50, 10);` satırlarını bulup 50'yi 500 yapın
+   - public/index.html'de `<input type="number" class="form-control" id="maxFollowsPerDay" name="maxFollowsPerDay" min="1" max="200">` satırındaki max değerini 500 yapın
+   - public/script.js'de `document.getElementById('maxFollowsPerDay').value = data.config.maxFollowsPerDay || 500;` şeklinde güncelleyin
+
+3. Değişiklikleri commit edin ve GitHub'a push edin:
+```bash
+git add .
+git commit -m "Günlük takip limiti 500'e yükseltildi"
+git push origin main
+```
+
+### Doğrudan GitHub üzerinden güncelleme yaparsanız:
+
+1. [https://github.com/kynex0/x](https://github.com/kynex0/x) adresine gidin
+2. Her dosyayı ayrı ayrı açıp, sağ üstteki kalem ikonuna tıklayarak düzenleyin
+3. Yukarıda belirtilen değişiklikleri yapın
+4. Her değişiklik için "Commit changes" butonuna tıklayarak kaydedin
+
+## 3. Kontrol Listesi
+
+- [ ] README.md: MAX_FOLLOWS_PER_DAY=500
+- [ ] .env.example: MAX_FOLLOWS_PER_DAY=500  
+- [ ] index.js: Varsayılan değer 500
+- [ ] public/index.html: max değeri 500
+- [ ] public/script.js: Varsayılan değer 500
+
+Bu değişiklikleri yaptıktan sonra bot günlük 500 takip limitiyle çalışacak şekilde güncellenmiş olacaktır.
+
+---
+
+_**User**_
+
+@.specstory bu dosyayı da .gitignore eklemek lazım 
+
+---
+
+_**Assistant**_
 
 
 

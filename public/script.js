@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Form değerlerini doldur
         document.getElementById('username').value = data.config.username;
-        document.getElementById('maxFollowsPerDay').value = data.config.maxFollowsPerDay;
+        document.getElementById('maxFollowsPerDay').value = data.config.maxFollowsPerDay || 500;
         document.getElementById('followDelayMin').value = data.config.followDelayMin;
         document.getElementById('followDelayMax').value = data.config.followDelayMax;
         document.getElementById('headless').checked = data.config.headless;
