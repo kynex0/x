@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>X Takipçi Botu API Dokümantasyonu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding-top: 56px;
+    }
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .api-section {
+      padding: 30px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .endpoint {
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f8f9fa;
+      margin-bottom: 20px;
+    }
+    .method {
+      font-weight: bold;
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      color: white;
+      margin-right: 10px;
+    }
+    .get {
+      background-color: #0d6efd;
+    }
+    .post {
+      background-color: #198754;
+    }
+    .delete {
+      background-color: #dc3545;
+    }
+    .put {
+      background-color: #fd7e14;
+    }
+    .code-block {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      font-family: 'Consolas', 'Monaco', monospace;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="bi bi-code-slash me-2"></i>X Takipçi Botu API</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Ana Sayfa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/api">API Dokümantasyonu</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>X Takipçi Botu API Dokümantasyonu</h1>
+        <p class="lead">
+          Bu API, X Takipçi Botunu programatik olarak kontrol etmenizi sağlar. Aşağıda mevcut tüm API endpoint'lerini ve kullanımlarını bulabilirsiniz.
+        </p>
+      </div>
+    </div>
+
+    <!-- Durum Endpoint -->
+    <div id="status" class="api-section">
+      <h2>Durum Bilgisi</h2>
+      <div class="endpoint">
+        <div class="row">
+          <div class="col-md-8">
+            <span class="method get">GET</span>
+            <code>/api/status</code>
+          </div>
+          <div class="col-md-4 text-end">
+            <span class="badge bg-success">Kimlik Doğrulama Gerektirmez</span>
+          </div>
+        </div>
+        <div class="mt-3">
+          <p>Botun mevcut durumunu ve yapılandırma bilgilerini döndürür.</p>
+          <h5>Örnek Yanıt:</h5>
+          <pre class="code-block">
+{
+  "followedCount": 42,
+  "config": {
+    "username": "your_username",
+    "maxFollowsPerDay": 50,
+    "followDelayMin": 15,
+    "followDelayMax": 30,
+    "useProxy": false,
+    "headless": false
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Takip Edilenler Endpoint -->
+    <div id="followed" class="api-section">
+      <h2>Takip Edilen Kullanıcılar</h2>
+      <div class="endpoint">
+        <div class="row">
+          <div class="col-md-8">
+            <span class="method get">GET</span>
+            <code>/api/followed-users</code>
+          </div>
+          <div class="col-md-4 text-end">
+            <span class="badge bg-success">Kimlik Doğrulama Gerektirmez</span>
+          </div>
+        </div>
+        <div class="mt-3">
+          <p>Daha önce takip edilmiş kullanıcıların listesini döndürür.</p>
+          <h5>Örnek Yanıt:</h5>
+          <pre class="code-block">
+[
+  "user1",
+  "user2",
+  "user3"
+]</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yapılandırma Endpoint -->
+    <div id="config" class="api-section">
+      <h2>Yapılandırma Güncelleme</h2>
+      <div class="endpoint">
+        <div class="row">
+          <div class="col-md-8">
+            <span class="method post">POST</span>
+            <code>/api/config</code>
+          </div>
+          <div class="col-md-4 text-end">
+            <span class="badge bg-success">Kimlik Doğrulama Gerektirmez</span>
+          </div>
+        </div>
+        <div class="mt-3">
+          <p>Bot yapılandırmasını günceller.</p>
+          <h5>Parametre Listesi:</h5>
+          <ul>
+            <li><code>username</code>: X kullanıcı adı</li>
+            <li><code>password</code>: X şifresi</li>
+            <li><code>maxFollowsPerDay</code>: Günlük maksimum takip sayısı</li>
+            <li><code>followDelayMin</code>: Takipler arası minimum gecikme (saniye)</li>
+            <li><code>followDelayMax</code>: Takipler arası maksimum gecikme (saniye)</li>
+            <li><code>headless</code>: Tarayıcının arka planda çalışması için boolean değer</li>
+            <li><code>useProxy</code>: Proxy kullanımını etkinleştirmek için boolean değer</li>
+            <li><code>proxyHost</code>: Proxy sunucu adresi</li>
+            <li><code>proxyPort</code>: Proxy port numarası</li>
+            <li><code>proxyUsername</code>: Proxy kullanıcı adı (opsiyonel)</li>
+            <li><code>proxyPassword</code>: Proxy şifresi (opsiyonel)</li>
+          </ul>
+          <h5>Örnek İstek:</h5>
+          <pre class="code-block">
+POST /api/config
+Content-Type: application/json
+
+{
+  "username": "your_username",
+  "password": "your_password",
+  "maxFollowsPerDay": 50,
+  "followDelayMin": 15,
+  "followDelayMax": 30,
+  "headless": false,
+  "useProxy": true,
+  "proxyHost": "proxy.example.com",
+  "proxyPort": "8080",
+  "proxyUsername": "proxy_user",
+  "proxyPassword": "proxy_pass"
+}</pre>
+          <h5>Örnek Yanıt:</h5>
+          <pre class="code-block">
+{
+  "success": true,
+  "message": "Yapılandırma güncellendi"
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bot Başlatma Endpoint -->
+    <div id="start" class="api-section">
+      <h2>Bot Başlatma</h2>
+      <div class="endpoint">
+        <div class="row">
+          <div class="col-md-8">
+            <span class="method post">POST</span>
+            <code>/api/start</code>
+          </div>
+          <div class="col-md-4 text-end">
+            <span class="badge bg-success">Kimlik Doğrulama Gerektirmez</span>
+          </div>
+        </div>
+        <div class="mt-3">
+          <p>Botu belirtilen hedef hesaplar için başlatır.</p>
+          <h5>Parametre Listesi:</h5>
+          <ul>
+            <li><code>targetAccounts</code>: Takipçileri takip edilecek X hesaplarının dizi listesi</li>
+          </ul>
+          <h5>Örnek İstek:</h5>
+          <pre class="code-block">
+POST /api/start
+Content-Type: application/json
+
+{
+  "targetAccounts": ["elonmusk", "jackdorsey"]
+}</pre>
+          <h5>Örnek Yanıt:</h5>
+          <pre class="code-block">
+{
+  "success": true,
+  "message": "Bot başlatıldı",
+  "targetAccounts": ["elonmusk", "jackdorsey"]
+}</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 mb-5 text-center">
+      <p class="text-muted">X Takipçi Botu &copy; 2023</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 
