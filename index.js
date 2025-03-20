@@ -1035,6 +1035,99 @@ const configureProxy = () => {
   return proxyUrl;
 };
 
+// Tarayıcı kurulumuyla ilgili işlevler
+const setupBrowser = async () => {
+  // Proxy yapılandırması
+  const proxyUrl = configureProxy();
+  const launchOptions = {
+    headless: process.env.HEADLESS === 'true',
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins,site-per-process',
+      '--disable-site-isolation-trials',
+      '--disable-accelerated-2d-canvas',
+      '--disable-gpu',
+      '--disable-dev-shm-usage',
+      '--window-size=1920,1080',
+      '--lang=tr-TR,tr',
+      '--disable-blink-features=AutomationControlled' // Otomasyonu gizle
+    ],
+    defaultViewport: {
+      width: 1920,
+      height: 1080
+    },
+    ignoreHTTPSErrors: true
+  };
+  
+  // Eğer proxy varsa yapılandırmaya ekle
+  if (proxyUrl) {
+    launchOptions.args.push(`--proxy-server=${proxyUrl}`);
+  }
+  
+  // Tarayıcıyı başlat
+  logger.info('Tarayıcı başlatılıyor...');
+  const browser = await puppeteer.launch(launchOptions);
+  
+  return browser;
+};
+
+// Sayfa oluşturma ve yapılandırma
+const createPage = async (browser) => {
+  const page = await browser.newPage();
+  
+  // Otomasyonu gizle
+  await page.evaluateOnNewDocument(() => {
+    // WebDriver özelliğini gizle
+    Object.defineProperty(navigator, 'webdriver', {
+      get: () => false,
+    });
+    
+    // User-Agent Chrome'a ayarlayarak daha insansı yap
+    window.navigator.chrome = {
+      runtime: {},
+    };
+    
+    // Ek navigator özellikleri ekle
+    const originalQuery = window.navigator.permissions.query;
+    window.navigator.permissions.query = (parameters) => (
+      parameters.name === 'notifications' ?
+        Promise.resolve({ state: Notification.permission }) :
+        originalQuery(parameters)
+    );
+  });
+  
+  // Gerçek tarayıcıyı taklit et
+  await page.setExtraHTTPHeaders({
+    'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Cache-Control': 'max-age=0',
+    'Connection': 'keep-alive',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'none',
+    'Sec-Fetch-User': '?1',
+    'Upgrade-Insecure-Requests': '1',
+    'DNT': '1'
+  });
+  
+  // User agent ayarla
+  await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36');
+  
+  // Proxy kullanıcı adı/şifre gerektiriyorsa kimlik doğrulama
+  const proxyUrl = configureProxy();
+  if (proxyUrl && process.env.PROXY_USERNAME && process.env.PROXY_PASSWORD) {
+    await page.authenticate({
+      username: process.env.PROXY_USERNAME,
+      password: process.env.PROXY_PASSWORD
+    });
+  }
+  
+  return page;
+};
+
 // İnsan davranışını taklit eden fonksiyon
 const randomHumanBehavior = async (page) => {
   // Rastgele bekleme süresi
@@ -1076,127 +1169,23 @@ const randomHumanBehavior = async (page) => {
   return true;
 };
 
-// Ana uygulama fonksiyonu - Browser kapatılmadan açık kalacak şekilde düzenlendi
+// Hedef hesapların takipçilerini topla ve sonra takip et
 const runBot = async (targetAccounts) => {
-  logger.info('=== X Takipçi Botu Başlatılıyor ===');
-  logger.info(`Hedef hesaplar: @${targetAccounts.join(', @')} - Bu hesapların takipçileri takip edilecek`);
-  
-  // Küresel tarayıcı değişkeni
-  let browser;
-  let page;
-  
-  // Tarayıcı zaten açıksa, onu kullan, değilse yeni bir tarayıcı başlat
-  if (global.browser && global.page) {
-    logger.info('Tarayıcı zaten açık, mevcut oturum kullanılıyor...');
-    browser = global.browser;
-    page = global.page;
-  } else {
-    // Proxy yapılandırması
-    const proxyUrl = configureProxy();
-    const launchOptions = {
-      headless: process.env.HEADLESS === 'true',
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-web-security',
-        '--disable-features=IsolateOrigins,site-per-process',
-        '--disable-site-isolation-trials',
-        '--disable-accelerated-2d-canvas',
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--window-size=1920,1080',
-        '--lang=tr-TR,tr',
-        '--disable-blink-features=AutomationControlled' // Otomasyonu gizle
-      ],
-      defaultViewport: {
-        width: 1920,
-        height: 1080
-      },
-      ignoreHTTPSErrors: true
-    };
-    
-    // Eğer proxy varsa yapılandırmaya ekle
-    if (proxyUrl) {
-      launchOptions.args.push(`--proxy-server=${proxyUrl}`);
-    }
-    
-    try {
-      // Tarayıcıyı başlat
-      logger.info('Tarayıcı başlatılıyor...');
-      browser = await puppeteer.launch(launchOptions);
-      global.browser = browser; // Global olarak sakla
-      
-      page = await browser.newPage();
-      global.page = page; // Global olarak sakla
-      
-      // Otomasyonu gizle
-      await page.evaluateOnNewDocument(() => {
-        // WebDriver özelliğini gizle
-        Object.defineProperty(navigator, 'webdriver', {
-          get: () => false,
-        });
-        
-        // User-Agent Chrome'a ayarlayarak daha insansı yap
-        window.navigator.chrome = {
-          runtime: {},
-        };
-        
-        // Ek navigator özellikleri ekle
-        const originalQuery = window.navigator.permissions.query;
-        window.navigator.permissions.query = (parameters) => (
-          parameters.name === 'notifications' ?
-            Promise.resolve({ state: Notification.permission }) :
-            originalQuery(parameters)
-        );
-      });
-      
-      // Gerçek tarayıcıyı taklit et
-      await page.setExtraHTTPHeaders({
-        'Accept-Language': 'tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Cache-Control': 'max-age=0',
-        'Connection': 'keep-alive',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1',
-        'DNT': '1'
-      });
-      
-      // User agent ayarla
-      await page.setUserAgent(process.env.USER_AGENT);
-      
-      // Proxy kullanıcı adı/şifre gerektiriyorsa kimlik doğrulama
-      if (proxyUrl && process.env.PROXY_USERNAME && process.env.PROXY_PASSWORD) {
-        await page.authenticate({
-          username: process.env.PROXY_USERNAME,
-          password: process.env.PROXY_PASSWORD
-        });
-      }
-
-      // X'e giriş yap
-      const loggedIn = await loginToX(page);
-      
-      if (!loggedIn) {
-        logger.error('Giriş başarısız oldu. Program durduruluyor.');
-        // Bir şeyler yanlış giderse browser'ı kapatabiliriz
-        await browser.close();
-        global.browser = null;
-        global.page = null;
-        return;
-      }
-      
-      global.isLoggedIn = true;
-    } catch (browserError) {
-      logger.error(`Tarayıcı başlatılırken hata: ${browserError.message}`);
-      return;
-    }
-  }
-  
   try {
-    // Eğer daha önce giriş yapılmadıysa ve mevcut oturum kullanılıyorsa kontrol et
+    logger.info('=== X Takipçi Botu Başlatılıyor ===');
+    logger.info(`Hedef hesaplar: @${targetAccounts.join(', @')} - Bu hesapların takipçileri takip edilecek`);
+    
+    // Tarayıcı oturumunu yeniden kullan veya yeni başlat
+    if (!global.browser || !global.page) {
+      const browser = await setupBrowser();
+      global.browser = browser;
+      const page = await createPage(browser);
+      global.page = page;
+    }
+    
+    const page = global.page;
+    
+    // Oturum durumunu kontrol et
     if (!global.isLoggedIn) {
       logger.info('Önceki oturumun durumu kontrol ediliyor...');
       const currentUrl = await page.url();
@@ -1229,8 +1218,14 @@ const runBot = async (targetAccounts) => {
     const maxFollowsPerDay = parseInt(process.env.MAX_FOLLOWS_PER_DAY || 500, 10);
     let followCount = 0;
     
-    // Hedef hesaplar için takipçileri topla ve takip et
+    // YENİ: Önce TÜM hedef hesaplardan takipçileri topla
+    logger.info('TÜM hedef hesaplardan takipçiler toplanıyor...');
+    const allFollowers = [];
+    
+    // Her bir hedef hesap için takipçileri topla
     for (const targetAccount of targetAccounts) {
+      logger.info(`@${targetAccount} hesabının takipçileri toplanıyor...`);
+      
       // Hedef hesabın takipçilerini al
       const followers = await getFollowers(page, targetAccount);
       logger.info(`@${targetAccount} için ${followers.length} takipçi bulundu`);
@@ -1240,38 +1235,55 @@ const runBot = async (targetAccounts) => {
         continue;
       }
       
-      // Takipçileri takip et
-      for (const follower of followers) {
-        // Günlük limit doldu mu kontrol et
-        if (followCount >= maxFollowsPerDay) {
-          logger.info(`Günlük takip limiti (${maxFollowsPerDay}) doldu. İşlem tamamlandı.`);
-          break;
-        }
-        
-        // Kullanıcı zaten takip edilmiş mi kontrol et
-        if (followedUsers.includes(follower)) {
-          logger.info(`@${follower} kullanıcısı zaten takip edilmiş, atlanıyor.`);
-          continue;
-        }
-        
-        // Kullanıcıyı takip et
-        const success = await followUser(page, follower);
-        
-        if (success) {
-          followCount++;
-          logger.info(`📊 Bugün takip edilen kullanıcı sayısı: ${followCount}/${maxFollowsPerDay}`);
-          
-          // İnsan davranışını taklit eden rastgele beklemeler
-          await randomHumanBehavior(page);
-          
-          // Takip işlemleri arasında rastgele gecikme
-          await randomDelay();
-        }
+      // Henüz takip edilmemiş olan takipçileri filtreleyerek ekle
+      const newFollowers = followers.filter(follower => 
+        !followedUsers.includes(follower) && 
+        !allFollowers.includes(follower)
+      );
+      
+      logger.info(`@${targetAccount} için ${newFollowers.length} yeni takipçi bulundu, listeye ekleniyor.`);
+      allFollowers.push(...newFollowers);
+      
+      // İnsan davranışını taklit eden rastgele beklemeler
+      await randomHumanBehavior(page);
+    }
+    
+    // Toplanan tüm takipçileri karıştır (daha doğal davranış için)
+    const shuffledFollowers = allFollowers
+      .sort(() => 0.5 - Math.random())
+      .slice(0, maxFollowsPerDay); // Günlük limitten fazla ise kes
+    
+    logger.info(`Toplam ${allFollowers.length} takipçi bulundu. Bunlardan ${shuffledFollowers.length} tanesi takip edilecek.`);
+    
+    // 500 veya daha fazla takipçi bulundu mu kontrol et
+    if (shuffledFollowers.length === 0) {
+      logger.warn('Takip edilecek hesap bulunamadı. İşlem sonlandırılıyor.');
+      return;
+    }
+    
+    // YENİ: Takip etme sayısını göster ve başla
+    logger.info(`${shuffledFollowers.length} hesap takip edilmeye başlanıyor...`);
+    
+    // Takipçileri takip et
+    for (const follower of shuffledFollowers) {
+      // Günlük limit doldu mu kontrol et
+      if (followCount >= maxFollowsPerDay) {
+        logger.info(`Günlük takip limiti (${maxFollowsPerDay}) doldu. İşlem tamamlandı.`);
+        break;
       }
       
-      // Günlük limit doldu mu tekrar kontrol et
-      if (followCount >= maxFollowsPerDay) {
-        break;
+      // Kullanıcıyı takip et
+      const success = await followUser(page, follower);
+      
+      if (success) {
+        followCount++;
+        logger.info(`📊 Bugün takip edilen kullanıcı sayısı: ${followCount}/${maxFollowsPerDay}`);
+        
+        // İnsan davranışını taklit eden rastgele beklemeler
+        await randomHumanBehavior(page);
+        
+        // Takip işlemleri arasında rastgele gecikme
+        await randomDelay();
       }
     }
     
